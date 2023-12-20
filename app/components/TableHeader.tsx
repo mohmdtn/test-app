@@ -1,16 +1,16 @@
 import Image from 'next/image';
-import React from 'react';
+import React, { useState } from 'react';
 import { SiteContext } from '../context/siteContext';
 
 const TableHeader = () => {
-  const { setIsModalOpen, selectedItem } = React.useContext(SiteContext);
+  const { setIsModalOpen, selectedItem, search } = React.useContext(SiteContext);
 
   return (
     <section className="flex justify-between">
         {/* Search Inputs */}
         <div className="flex gap-2">
           <div className="relative flex items-center">
-            <input type="text" className="h-11 w-64 rounded-lg border bg-white pr-10 focus:outline-none focus:shadow-md text-gray-600" placeholder="جستجو" />
+            <input type="text" className="h-11 w-64 rounded-lg border bg-white pr-10 focus:outline-none focus:shadow-md text-gray-600" placeholder="جستجو" onChange={(e) => search(e.target.value)}/>
             <Image src={"/icons/search.svg"} width={16} height={16} alt="search icon" className="absolute right-4" />
           </div>
           <div className="h-10 w-10 border rounded-lg flex justify-center items-center cursor-pointer hover:shadow-md duration-150" onClick={() => setIsModalOpen(true)}>

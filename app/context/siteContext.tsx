@@ -25,6 +25,22 @@ export const SiteProvider = ({ children }: { children: ReactNode }) => {
     setInitialData(prev => prev.filter(item => item.id !== id))
   }
 
+  const search = (input: string) => {
+    setInitialData(data)
+    if (!input) {
+      setInitialData(data)
+    }
+    setInitialData((prev) => {
+      return prev.filter((item) => {
+        return item.title.toLocaleLowerCase().startsWith(input.toLocaleLowerCase()) ||
+        item.code.toLocaleLowerCase().startsWith(input.toLocaleLowerCase()) ||
+        item.accShaba.toLocaleLowerCase().startsWith(input.toLocaleLowerCase()) ||
+        item.accNumber.toLocaleLowerCase().startsWith(input.toLocaleLowerCase()) ||
+        item.cart.toString().toLocaleLowerCase().startsWith(input.toLocaleLowerCase())
+      })
+    })
+  }
+
   const value = {
     isModalOpen,
     setIsModalOpen,
@@ -37,7 +53,8 @@ export const SiteProvider = ({ children }: { children: ReactNode }) => {
     setSelectedItem,
     confirmModal,
     setConfirmModal,
-    deleteItem
+    deleteItem,
+    search
   };
 
   return <SiteContext.Provider value={value}>{children}</SiteContext.Provider>;
