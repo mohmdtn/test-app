@@ -2,26 +2,76 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+@font-face {
+  font-family: "BYekan+";
+  src: url("/fonts/BYekan+.ttf") format("truetype");
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+@font-face {
+  font-family: "IRANSansNumb";
+  src: url("/fonts/IRANSansNumb.ttf") format("truetype");
+}
+
+@layer components {
+  .dir-left {
+    direction: ltr;
+    text-align: right;
+  }
+
+  .dir-right {
+    direction: rtl;
+    text-align: left;
   }
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  font-family: "BYekan+";
+  direction: rtl;
+}
+
+.data-table thead th {
+  @apply font-medium py-4 px-4 text-right bg-gray-50 text-gray-600 whitespace-nowrap;
+}
+
+.data-table tbody tr {
+  @apply text-gray-600 text-base border-b;
+}
+
+.data-table tbody tr:last-child {
+  @apply border-none
+}
+
+.data-table tbody tr td {
+  @apply py-4 px-4 whitespace-nowrap;
+}
+
+
+
+/* custom scrollbar for table */
+.data-table::-webkit-scrollbar {
+  width: 14px;
+  height: 14px;
+}
+
+.data-table::-webkit-scrollbar-track {
+  border-radius: 100vh;
+  @apply bg-white;
+}
+
+.data-table::-webkit-scrollbar-thumb {
+  border-radius: 100vh;
+  border: 3px solid #f6f7ed;
+  @apply bg-gray-200;
+}
+
+.data-table::-webkit-scrollbar-thumb:hover {
+  @apply bg-gray-300;
+}
+
+.css-1t1j96h-MuiPaper-root-MuiDialog-paper {
+  background-color: #00000000;
+  box-shadow: none;
+}
+.css-yiavyu-MuiBackdrop-root-MuiDialog-backdrop {
+  background-color: #6c6c6c48;
 }
