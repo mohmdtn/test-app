@@ -9,6 +9,7 @@ import { SiteContext } from "../context/siteContext";
 
 const TableBody = () => {
   const [isSelected, setIsSelected] = useState(false);
+  // you can change number of initial record by changing this number
   const [dataNumb, setDataNum] = useState(5);
   const { initialData } = React.useContext(SiteContext);
 
@@ -16,7 +17,7 @@ const TableBody = () => {
   return (
     <>
     <FilterModal />
-    <section className="border max-w-[calc(100vw-384px)] rounded-xl mt-4 data-table overflow-auto relative">
+    <section className="border max-w-[calc(100vw-384px)] rounded-t-xl mt-4 data-table overflow-auto relative">
       {/* Table Header */}
       <table className="w-full overflow-scroll table-auto">
         <thead className="border-b">
@@ -43,17 +44,15 @@ const TableBody = () => {
           {initialData.slice(0, dataNumb).map((item: any) => <TableRecord key={item.id} id={item.id} title={item.title} code={item.code} accNumber={item.accNumber} accShaba={item.accShaba} cart={item.cart} portalStatus={item.portalStatus} cartStatus={item.cartStatus} active={isSelected} />)}
         </tbody>
       </table>
-
-      {/* Table Footer */}
-      <div className="w-[calc(100vw-384px)] flex justify-center p-4">
-        <button className="flex gap-2 justify-center items-center text-gray-700" onClick={() => setDataNum(dataNumb + 2)}>
+    </section>
+    {/* Table Footer */}
+    <div className="w-[calc(100vw-384px)] flex justify-center p-4 border rounded-b-xl mb-7">
+        <button className="flex gap-2 justify-center items-center text-gray-700" onClick={() => setDataNum(dataNumb + 5)}>
           <Image src={"/icons/refresh.svg"} width={20} height={20} alt="refresh icon" />
           مشاهده بیشتر
           <HiChevronDown size={16} />
         </button>
-      </div>
-      
-    </section>
+    </div>
     </>
   );
 };

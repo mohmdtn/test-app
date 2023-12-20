@@ -9,7 +9,7 @@ const menuItems = [
   { name: "کالا و خدمات", icon: "box" },
   { name: "انبارداری", icon: "home" },
   { name: "فروش", icon: "cart" },
-  { name: "خزانه داری", icon: "coins", subMenu: true },
+  { name: "خزانه داری", icon: "coins", subMenu: true, active: "first" },
   { name: "حسابداری", icon: "calculater" },
   { name: "تنظیمات", icon: "setting" },
 ];
@@ -17,7 +17,7 @@ const menuItems = [
 function Menu() {
   return (
     <section className="">
-      {menuItems.map((item, index) => <MenuItem key={index} name={item.name} icon={item.icon} subMenu={item.subMenu} />)}
+      {menuItems.map((item, index) => <MenuItem key={index} name={item.name} icon={item.icon} subMenu={item.subMenu} active={item.active} />)}
     </section>
   );
 }

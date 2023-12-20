@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import Sidebar from "./components/Sidebar";
 import { SiteProvider } from "./context/siteContext";
+import { Toaster } from "react-hot-toast";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -19,6 +20,7 @@ export default function RootLayout({
         <body className="flex">
           <Sidebar />
           <main className="flex-1">
+            <Toaster />
             {children}
           </main>
         </body>

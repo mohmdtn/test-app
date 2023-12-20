@@ -1,23 +1,30 @@
 import React from "react";
-import Image from "next/image";
 import { SiteContext } from "../context/siteContext";
-
 import Dialog from "@mui/material/Dialog";
-import { LiaTimesSolid } from "react-icons/lia";
-import { MenuItem, Select } from "@mui/material";
+import toast from "react-hot-toast";
 
-const DeleteConfirm = () => {
-  const {isModalOpen, setIsModalOpen, setFilter, filter, filterdData, clearFilter } = React.useContext(SiteContext);
+interface DeleteConfirmProps {
+  id?: string;
+}
+
+const DeleteConfirm: React.FC<DeleteConfirmProps> = ({id}) => {
+  const { confirmModal, setConfirmModal, deleteItem } = React.useContext(SiteContext);
+
+  const deleteHandle = () => {
+    deleteItem(id);
+    setConfirmModal(false)
+    toast.success("آیتم با موفقیت حذف شد.");
+  }
 
   return (
-    <Dialog open={isModalOpen} onClose={() => setIsModalOpen(false)}>
-      <section className="bg-white rounded-2xl w-96 shadow-lg">
-        <h3></h3>
+    <Dialog open={confirmModal} onClose={() => setConfirmModal(false)}>
+      <section className="bg-white rounded-2xl w-96 shadow-lg p-7">
+        <h3 className="text-2xl text-center">آیا از حذف این آیتم مطما هستید؟</h3>
 
         {/* modal footer */}
-        <section className="p-7 border-t flex justify-between gap-2">
-          <button className="border p-3 w-1/2 flex justify-center items-center rounded-lg bg-blue-600 text-white" onClick={filterHandle}>تایید</button>
-          <button className="border p-3 w-1/2 flex justify-center items-center rounded-lg text-gray-700 border-gray-300" onClick={() => setIsModalOpen(false)}>انصراف</button>
+        <section className="pt-7 flex justify-between gap-2">
+          <button className="border p-3 w-1/2 flex justify-center items-center rounded-lg bg-red-500 text-white" onClick={deleteHandle}>حذف</button>
+          <button className="border p-3 w-1/2 flex justify-center items-center rounded-lg text-gray-700 border-gray-300" onClick={() => setConfirmModal(false)}>انصراف</button>
         </section>
       </section>
     </Dialog>

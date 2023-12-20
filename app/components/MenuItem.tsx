@@ -1,6 +1,6 @@
 "use client";
 import Image from 'next/image'
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { HiChevronDown } from "react-icons/hi2";
 
@@ -8,10 +8,16 @@ interface MenuItemProps {
   icon: String;
   name: String;
   subMenu?: boolean;
+  active?: string;
 }
 
-const MenuItem: React.FC<MenuItemProps> = ({icon, name, subMenu}) => {
+const MenuItem: React.FC<MenuItemProps> = ({icon, name, subMenu, active}) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  useEffect(() => {
+    if (active && active === "first")
+      setIsMenuOpen(true)
+  }, [active])
 
   return (
     <section>
@@ -24,7 +30,7 @@ const MenuItem: React.FC<MenuItemProps> = ({icon, name, subMenu}) => {
       </section>
       {subMenu && isMenuOpen && (
         <section className="mr-7 border-r">
-          <h3 className="pr-3 text-xl text-gray-700 duration-150 cursor-pointer hover:pr-5">تعریف حساب بانکی</h3>
+          <h3 className={`pr-3 text-xl duration-150 cursor-pointer hover:pr-5 ${active ==="first" && "text-blue-600"}`}>تعریف حساب بانکی</h3>
           <h3 className="p-3 pr-3 text-xl text-gray-700 duration-150 cursor-pointer hover:pr-5">آپشن 1</h3>
           <h3 className="pr-3 text-xl text-gray-700 duration-150 cursor-pointer hover:pr-5">آپشن 2</h3>
         </section>

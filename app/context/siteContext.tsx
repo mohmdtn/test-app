@@ -10,6 +10,7 @@ export const SiteProvider = ({ children }: { children: ReactNode }) => {
   const [filter, setFilter] =  useState({portal: true, cart: true});
   const [initialData, setInitialData] = useState(data);
   const [selectedItem, setSelectedItem] = useState([]);
+  const [confirmModal, setConfirmModal] = useState(false)
 
   const filterdData = () => {
     setInitialData(data);
@@ -18,6 +19,10 @@ export const SiteProvider = ({ children }: { children: ReactNode }) => {
 
   const clearFilter = () => {
     setInitialData(data);
+  }
+
+  const deleteItem = (id: string) => {
+    setInitialData(prev => prev.filter(item => item.id !== id))
   }
 
   const value = {
@@ -30,6 +35,9 @@ export const SiteProvider = ({ children }: { children: ReactNode }) => {
     clearFilter,
     selectedItem,
     setSelectedItem,
+    confirmModal,
+    setConfirmModal,
+    deleteItem
   };
 
   return <SiteContext.Provider value={value}>{children}</SiteContext.Provider>;
