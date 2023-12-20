@@ -4,12 +4,20 @@ import Dialog from "@mui/material/Dialog";
 import toast from "react-hot-toast";
 
 const DeleteMultiItem = () => {
-  const { deleteMultiModal, setDeleteMultiModal, deleteMulti } = React.useContext(SiteContext);
+  const { deleteMultiModal, setDeleteMultiModal, deleteMulti, selectedItem } = React.useContext(SiteContext);
 
   const deleteHandle = () => {
-    deleteMulti();
-    setDeleteMultiModal(false)
-    toast.success("آیتم ها با موفقیت حذف شدند.");
+    if (selectedItem.length < 1) {
+      toast.error("آیتمی انتخاب نکردید")
+    }
+    if (selectedItem.length == 1) {
+        toast.error("بیش از یک آیتم انتخاب کنید")
+    }
+    if (selectedItem.length > 1) {
+      deleteMulti();
+      setDeleteMultiModal(false)
+      toast.success("آیتم ها با موفقیت حذف شدند.");
+    }
   }
 
   return (
