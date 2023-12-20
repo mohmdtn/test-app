@@ -1,12 +1,15 @@
 import Image from 'next/image';
 import React, { useState } from 'react';
 import { SiteContext } from '../context/siteContext';
+import DeleteMultiItem from './DeleteMultiItem';
 
 const TableHeader = () => {
-  const { setIsModalOpen, selectedItem, search } = React.useContext(SiteContext);
+  const { setIsModalOpen, selectedItem, search, setDeleteMultiModal } = React.useContext(SiteContext);
 
   return (
-    <section className="flex justify-between">
+    <>
+      <DeleteMultiItem />
+      <section className="flex justify-between">
         {/* Search Inputs */}
         <div className="flex gap-2">
           <div className="relative flex items-center">
@@ -26,7 +29,7 @@ const TableHeader = () => {
           <div className="h-10 w-10 border rounded-lg flex justify-center items-center cursor-pointer hover:shadow-md duration-150">
             <Image src={"/icons/exel.svg"} width={20} height={20} alt="exel icon" />
           </div>
-          <div className={`h-10 w-10 border rounded-lg flex justify-center items-center cursor-pointer hover:shadow-md duration-150 ${selectedItem.length > 1 && "bg-red-100 border-red-600"}`}>
+          <div className={`h-10 w-10 border rounded-lg flex justify-center items-center cursor-pointer hover:shadow-md duration-150 ${selectedItem.length > 1 && "bg-red-100 border-red-600"}`} onClick={() => setDeleteMultiModal(true)}>
             <Image src={"/icons/trash.svg"} width={20} height={20} alt="trash icon" />
           </div>
           <div className="h-10 px-3 bg-blue-600 rounded-lg flex justify-center items-center cursor-pointer hover:shadow-md duration-150">
@@ -35,6 +38,7 @@ const TableHeader = () => {
           </div>
         </div>
       </section>
+    </>
   )
 }
 

@@ -10,7 +10,8 @@ export const SiteProvider = ({ children }: { children: ReactNode }) => {
   const [filter, setFilter] =  useState({portal: true, cart: true});
   const [initialData, setInitialData] = useState(data);
   const [selectedItem, setSelectedItem] = useState([]);
-  const [confirmModal, setConfirmModal] = useState(false)
+  const [confirmModal, setConfirmModal] = useState(false);
+  const [deleteMultiModal, setDeleteMultiModal] = useState(false);
 
   const filterdData = () => {
     setInitialData(data);
@@ -41,6 +42,10 @@ export const SiteProvider = ({ children }: { children: ReactNode }) => {
     })
   }
 
+  const deleteMulti = () => {
+    selectedItem.map(a => setInitialData(prev => prev.filter(b => b.id !== a)))
+  }
+
   const value = {
     isModalOpen,
     setIsModalOpen,
@@ -54,7 +59,10 @@ export const SiteProvider = ({ children }: { children: ReactNode }) => {
     confirmModal,
     setConfirmModal,
     deleteItem,
-    search
+    search,
+    deleteMultiModal,
+    setDeleteMultiModal,
+    deleteMulti
   };
 
   return <SiteContext.Provider value={value}>{children}</SiteContext.Provider>;
