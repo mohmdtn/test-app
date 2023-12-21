@@ -13,7 +13,7 @@ const Navbar = () => {
         <SelectedDate />
         <Avatar />
       </section>
-      <div className="h-6 w-6 rounded-full flex items-center justify-center border absolute -right-3 top-9 bg-white cursor-pointer"><GoArrowRight /></div>
+      <div className="h-6 w-6 rounded-full flex items-center justify-center border absolute -right-3 top-9 bg-white cursor-pointer hover:shadow-lg hover:scale-125 duration-150"><GoArrowRight /></div>
     </nav>
   )
 }

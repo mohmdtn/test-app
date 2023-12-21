@@ -14,7 +14,7 @@ export default function Home() {
         <CreateAccount />
         <Table />
       </section>
-      <div className='absolute bottom-0 cursor-pointer left-4 w-12 h-12 rounded-full border border-yellow-600 bg-yellow-200 flex justify-center items-center hover:shadow-lg duration-150'>
+      <div className='fixed bottom-5 cursor-pointer left-5 w-12 h-12 rounded-full border border-yellow-600 bg-yellow-200 flex justify-center items-center hover:shadow-lg duration-150'>
         <PiChatsCircleLight size={20} className={"text-yellow-600"} />
       </div>
     </section>
